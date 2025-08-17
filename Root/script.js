@@ -40,6 +40,26 @@ async function showDashboard(user) {
   const prices = await pricesRes.json();
   document.getElementById("btcPrice").textContent = prices.bitcoin.usd;
   document.getElementById("ethPrice").textContent = prices.ethereum.usd;
+  document.getElementById("xrpPrice").textContent = prices.ripple.usd;
+  document.getElementById("usdtPrice").textContent = prices.tether.usd;
+  document.getElementById("bnbPrice").textContent = prices.binancecoin.usd;
+  document.getElementById("solPrice").textContent = prices.solana.usd;
+  document.getElementById("usdcPrice").textContent = prices["usd-coin"].usd;
+  document.getElementById("adaPrice").textContent = prices.cardano.usd;
+  document.getElementById("avaxPrice").textContent = prices["avalanche-2"].usd;
+  document.getElementById("trxPrice").textContent = prices.tron.usd;
+  document.getElementById("dogePrice").textContent = prices.dogecoin.usd;
+  document.getElementById("linkPrice").textContent = prices.chainlink.usd;
+  document.getElementById("tonPrice").textContent =
+    prices["the-open-network"].usd;
+  document.getElementById("maticPrice").textContent =
+    prices["matic-network"].usd;
+  document.getElementById("shibPrice").textContent = prices["shiba-inu"].usd;
+  document.getElementById("ltcPrice").textContent = prices.litecoin.usd;
+  document.getElementById("bchPrice").textContent = prices["bitcoin-cash"].usd;
+  document.getElementById("dotPrice").textContent = prices.polkadot.usd;
+  document.getElementById("uniPrice").textContent = prices.uniswap.usd;
+  document.getElementById("nearPrice").textContent = prices.near.usd;
 }
 
 async function updateUser() {

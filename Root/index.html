@@ -1,39 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto Trader Simulator</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
     <h1>Crypto Trader Simulator</h1>
     <div id="auth">
-      <input id="username" placeholder="Username" />
-      <input id="password" type="password" placeholder="Password" />
-      <button onclick="signup()">Sign Up</button>
-      <button onclick="login()">Login</button>
+        <input id="username" placeholder="Username">
+        <input id="password" type="password" placeholder="Password">
+        <button onclick="signup()">Sign Up</button>
+        <button onclick="login()">Login</button>
     </div>
-    <div id="dashboard" style="display: none">
-      <p>
-        Welcome, <span id="userName"></span>! Balance: $<span
-          id="balance"
-        ></span>
-      </p>
-      <h2>Prices:</h2>
-      <p>BTC: $<span id="btcPrice"></span></p>
-      <p>ETH: $<span id="ethPrice"></span></p>
-      <h2>Portfolio:</h2>
-      <ul id="portfolio"></ul>
-      <h2>Trade:</h2>
-      <select id="coin">
-        <option value="bitcoin">BTC</option>
-        <option value="ethereum">ETH</option>
-      </select>
-      <input id="amount" type="number" placeholder="Amount" />
-      <button onclick="trade('buy')">Buy</button>
-      <button onclick="trade('sell')">Sell</button>
+    <div id="dashboard" style="display:none;">
+        <p>Welcome, <span id="userName"></span>! Balance: $<span id="balance"></span></p>
+        <h2>Prices:</h2>
+        <div id="prices-list" style="max-height: 200px; overflow-y: auto;"> <!-- Scrollable for 20 items -->
+            <p>BTC: $<span id="btcPrice"></span></p>
+            <p>ETH: $<span id="ethPrice"></span></p>
+            <p>XRP: $<span id="xrpPrice"></span></p>
+            <p>USDT: $<span id="usdtPrice"></span></p>
+            <p>BNB: $<span id="bnbPrice"></span></p>
+            <p>SOL: $<span id="solPrice"></span></p>
+            <p>USDC: $<span id="usdcPrice"></span></p>
+            <p>ADA: $<span id="adaPrice"></span></p>
+            <p>AVAX: $<span id="avaxPrice"></span></p>
+            <p>TRX: $<span id="trxPrice"></span></p>
+            <p>DOGE: $<span id="dogePrice"></span></p>
+            <p>LINK: $<span id="linkPrice"></span></p>
+            <p>TON: $<span id="tonPrice"></span></p>
+            <p>MATIC: $<span id="maticPrice"></span></p>
+            <p>SHIB: $<span id="shibPrice"></span></p>
+            <p>LTC: $<span id="ltcPrice"></span></p>
+            <p>BCH: $<span id="bchPrice"></span></p>
+            <p>DOT: $<span id="dotPrice"></span></p>
+            <p>UNI: $<span id="uniPrice"></span></p>
+            <p>NEAR: $<span id="nearPrice"></span></p>
+        </div>
+        <h2>Portfolio:</h2>
+        <ul id="portfolio"></ul>
+        <h2>Trade:</h2>
+        <select id="coin">
+            <option value="bitcoin">BTC</option>
+            <option value="ethereum">ETH</option>
+            <option value="ripple">XRP</option>
+            <option value="tether">USDT</option>
+            <option value="binancecoin">BNB</option>
+            <option value="solana">SOL</option>
+            <option value="usd-coin">USDC</option>
+            <option value="cardano">ADA</option>
+            <option value="avalanche-2">AVAX</option>
+            <option value="tron">TRX</option>
+            <option value="dogecoin">DOGE</option>
+            <option value="chainlink">LINK</option>
+            <option value="the-open-network">TON</option>
+            <option value="matic-network">MATIC</option>
+            <option value="shiba-inu">SHIB</option>
+            <option value="litecoin">LTC</option>
+            <option value="bitcoin-cash">BCH</option>
+            <option value="polkadot">DOT</option>
+            <option value="uniswap">UNI</option>
+            <option value="near">NEAR</option>
+        </select>
+        <input id="amount" type="number" placeholder="Amount">
+        <button onclick="trade('buy')">Buy</button>
+        <button onclick="trade('sell')">Sell</button>
     </div>
     <script src="script.js"></script>
-  </body>
 </html>

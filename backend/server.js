@@ -67,11 +67,13 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-// Get prices (from CoinGecko API)
+// Get prices for top 20 cryptos (from CoinGecko API)
 app.get("/api/prices", async (req, res) => {
   try {
+    const ids =
+      "bitcoin,ethereum,ripple,tether,binancecoin,solana,usd-coin,cardano,avalanche-2,tron,dogecoin,chainlink,the-open-network,matic-network,shiba-inu,litecoin,bitcoin-cash,polkadot,uniswap,near";
     const response = await fetch(
-      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd"
+      `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd`
     );
     const data = await response.json();
     res.json(data);
