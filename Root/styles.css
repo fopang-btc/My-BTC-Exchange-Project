@@ -2,36 +2,34 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #121212; /* Dark background */
-  color: #e0e0e0; /* Light text */
+  background-color: #121212;
+  color: #e0e0e0;
   margin: 0;
   padding: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center horizontally */
-  justify-content: center; /* Center vertically */
 }
 
 header {
-  background-color: #1e1e1e; /* Dark header */
+  background-color: #1e1e1e;
   color: #e0e0e0;
   padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  width: 100%; /* Full width for header */
+  width: 100%;
 }
 
 .logo {
   font-size: 24px;
   font-weight: 700;
-  color: #4caf50; /* Green logo */
+  color: #4caf50;
 }
 
 .crypto-icon {
-  color: #ffd700; /* Gold for crypto symbols */
+  color: #ffd700;
   font-size: 18px;
   margin-right: 5px;
 }
@@ -44,7 +42,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #4caf50; /* Green hover */
+  color: #4caf50;
 }
 
 main {
@@ -52,15 +50,15 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
-  width: 100%; /* Ensure main is full width for centering */
+  padding: 20px;
+  width: 100%;
 }
 
 h1 {
-  color: #4caf50; /* Green accent */
+  color: #4caf50;
   font-weight: 700;
   margin-bottom: 20px;
-  text-align: center; /* Explicit center */
+  text-align: center;
 }
 
 #auth,
@@ -68,12 +66,12 @@ h1 {
   width: 100%;
   max-width: 400px;
   padding: 20px;
-  background-color: #1e1e1e; /* Dark card */
+  background-color: #1e1e1e;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease;
   box-sizing: border-box;
-  margin: 0 auto; /* Extra centering for the card */
+  margin: 0 auto;
 }
 
 #auth:hover,
@@ -108,14 +106,14 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input:focus,
 select:focus {
-  border-color: #4caf50; /* Green focus */
+  border-color: #4caf50;
   outline: none;
 }
 
 button {
   width: 100%;
   padding: 12px;
-  background-color: #4caf50; /* Green button */
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 8px;
@@ -128,14 +126,20 @@ button {
 }
 
 button:hover {
-  background-color: #388e3c; /* Darker green */
+  background-color: #388e3c;
   transform: scale(1.02);
 }
 
 #dashboard p,
 #dashboard h2 {
   margin: 10px 0;
-  text-align: center; /* Center text in dashboard */
+  text-align: center;
+}
+
+#prices-list {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 10px;
 }
 
 #portfolio {
@@ -149,7 +153,7 @@ button:hover {
   margin: 5px 0;
   border-radius: 8px;
   font-size: 14px;
-  text-align: center; /* Center portfolio items */
+  text-align: center;
 }
 
 footer {

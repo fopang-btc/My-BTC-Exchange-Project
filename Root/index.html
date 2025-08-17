@@ -9,6 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <header>
@@ -23,8 +24,8 @@
       <div id="auth">
         <input id="username" placeholder="Username" />
         <input id="password" type="password" placeholder="Password" />
-        <button class="auth-button" onclick="signup()">Sign Up</button>
-        <button class="auth-button" onclick="login()">Login</button>
+        <button onclick="signup()">Sign Up</button>
+        <button onclick="login()">Login</button>
       </div>
       <div id="dashboard" style="display: none">
         <p>
@@ -32,6 +33,7 @@
             id="balance"
           ></span>
         </p>
+        <p>Total Value: $<span id="totalValue">0</span></p>
         <h2>Prices:</h2>
         <div id="prices-list" style="max-height: 200px; overflow-y: auto">
           <p>
@@ -61,6 +63,7 @@
         </div>
         <h2>Portfolio:</h2>
         <ul id="portfolio"></ul>
+        <canvas id="chart" width="400" height="200"></canvas>
         <h2>Trade:</h2>
         <select id="coin">
           <option value="bitcoin">BTC</option>
@@ -85,8 +88,8 @@
           <option value="near">NEAR</option>
         </select>
         <input id="amount" type="number" placeholder="Amount" />
-        <button class="trade-button" onclick="trade('buy')">Buy</button>
-        <button class="trade-button" onclick="trade('sell')">Sell</button>
+        <button onclick="trade('buy')">Buy</button>
+        <button onclick="trade('sell')">Sell</button>
       </div>
     </main>
     <footer>

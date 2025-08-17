@@ -1,4 +1,5 @@
 let token = "";
+let previousPrices = {};
 
 async function signup() {
   const username = document.getElementById("username").value;
@@ -35,9 +36,20 @@ async function showDashboard(user) {
   document.getElementById("userName").textContent = user.username;
   updateUser();
 
-  // Fetch and display prices
+  // Initial price fetch
+  await updatePrices();
+
+  // Real-time refresh every 30 seconds with alerts
+  setInterval(async () => {
+    await updatePrices(true); // true for change checks
+  }, 30000);
+}
+
+async function updatePrices(checkChanges = false) {
   const pricesRes = await fetch("http://localhost:3000/api/prices");
   const prices = await pricesRes.json();
+
+  // Update all 20 prices
   document.getElementById("btcPrice").textContent = prices.bitcoin.usd;
   document.getElementById("ethPrice").textContent = prices.ethereum.usd;
   document.getElementById("xrpPrice").textContent = prices.ripple.usd;
@@ -60,6 +72,23 @@ async function showDashboard(user) {
   document.getElementById("dotPrice").textContent = prices.polkadot.usd;
   document.getElementById("uniPrice").textContent = prices.uniswap.usd;
   document.getElementById("nearPrice").textContent = prices.near.usd;
+
+  // Alert for big changes (>1%)
+  if (checkChanges) {
+    for (const coin in prices) {
+      if (
+        previousPrices[coin] &&
+        Math.abs(prices[coin].usd - previousPrices[coin]) /
+          previousPrices[coin] >
+          0.01
+      ) {
+        alert(
+          `${coin.toUpperCase()} price changed >1% to $${prices[coin].usd}!`
+        );
+      }
+    }
+  }
+  previousPrices = { ...prices };
 }
 
 async function updateUser() {
@@ -75,6 +104,36 @@ async function updateUser() {
     li.textContent = `${coin.toUpperCase()}: ${amount}`;
     portfolioList.appendChild(li);
   }
+
+  // Portfolio valuation
+  const pricesRes = await fetch("http://localhost:3000/api/prices");
+  const prices = await pricesRes.json();
+  let portValue = 0;
+  for (const [coin, amount] of Object.entries(user.portfolio)) {
+    portValue += amount * (prices[coin]?.usd || 0);
+  }
+  const total = user.balance + portValue;
+  document.getElementById("totalValue").textContent = total.toFixed(2);
+
+  // Chart (mocked with start and current; expand later)
+  const ctx = document.getElementById("chart").getContext("2d");
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: ["Start", "Current"],
+      datasets: [
+        {
+          label: "Net Worth",
+          data: [10000, total],
+          borderColor: "#4caf50",
+          tension: 0.1,
+        },
+      ],
+    },
+    options: {
+      scales: { y: { beginAtZero: false } },
+    },
+  });
 }
 
 async function trade(action) {

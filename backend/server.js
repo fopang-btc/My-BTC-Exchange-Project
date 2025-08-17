@@ -11,10 +11,7 @@ app.use(cors());
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
@@ -22,8 +19,8 @@ mongoose
 const UserSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  balance: { type: Number, default: 10000 }, // Fake USD
-  portfolio: { type: Map, of: Number, default: {} }, // e.g., { 'bitcoin': 0.5 }
+  balance: { type: Number, default: 10000 },
+  portfolio: { type: Map, of: Number, default: {} },
 });
 const User = mongoose.model("User", UserSchema);
 
@@ -47,14 +44,14 @@ app.post("/api/login", async (req, res) => {
   if (!user || !(await bcrypt.compare(password, user.password))) {
     return res.status(401).json({ error: "Invalid credentials" });
   }
-  const token = jwt.sign({ id: user._id }, "secretkey"); // Change 'secretkey' in production
+  const token = jwt.sign({ id: user._id }, "secretkey");
   res.json({
     token,
     user: { username, balance: user.balance, portfolio: user.portfolio },
   });
 });
 
-// Middleware to verify token
+// Middleware for token
 const authMiddleware = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) return res.status(401).json({ error: "No token" });
@@ -67,7 +64,7 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-// Get prices for top 20 cryptos (from CoinGecko API)
+// Get prices
 app.get("/api/prices", async (req, res) => {
   try {
     const ids =
@@ -82,7 +79,7 @@ app.get("/api/prices", async (req, res) => {
   }
 });
 
-// Trade route (buy/sell)
+// Trade route
 app.post("/api/trade", authMiddleware, async (req, res) => {
   const { coin, amount, action } = req.body;
   const user = await User.findById(req.userId);
