@@ -20,3 +20,14 @@ button {
 button:hover {
   background-color: #45a049;
 }
+
+input,
+select {
+  margin: 5px;
+  padding: 5px;
+}
+#auth,
+#dashboard {
+  max-width: 400px;
+  margin: auto;
+}
